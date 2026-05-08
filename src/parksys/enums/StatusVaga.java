@@ -1,4 +1,5 @@
-package Enums;
+package enums;
 
 public enum StatusVaga {
+
 }

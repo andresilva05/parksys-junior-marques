@@ -1,4 +1,4 @@
-package enums;
+package parksys.enums;
 
 public enum TipoVeiculo {
     MOTO("Motocicleta", 5.0, 1),
