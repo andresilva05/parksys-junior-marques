@@ -7,7 +7,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
+import java.util.Comparator;
+import java.util.stream.Collectors;
 import parksys.entities.Vaga;
 import parksys.entities.Veiculo;
 import parksys.enums.StatusVaga;
@@ -147,6 +148,13 @@ public class GerenciadorEstacionamento implements Serializable {
 
         System.out.println("Saída registrada: " + placa + " - Valor: R$ " + String.format("%.2f", valorPago) + " - Horas: " + horasEstacionado);
         return valorPago;
+    }
+
+    public List<Registro> obterRelatorioReceitaDecrescente() {
+        return registros.stream()
+                .filter(r -> r.getDataHoraSaida() != null) // Filtra apenas registros com saída registrada
+                .sorted(Comparator.comparingDouble(Registro::getValorPago).reversed()) // Ordena decrescente por valor pago
+                .collect(Collectors.toList()); // Coleta o resultado em uma nova lista
     }
 
     public Vaga getVaga(String id){
