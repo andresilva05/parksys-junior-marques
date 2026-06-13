@@ -2,7 +2,7 @@ package parksys.main;
 
 import parksys.services.GerenciadorArquivo;
 import parksys.services.GerenciadorEstacionamento;
-import parksys.ui.TelaRegistroEntrada;
+import parksys.ui.TelaInicial;
 
 import javax.swing.*;
 
@@ -24,7 +24,7 @@ public class Main {
                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             } catch (Exception ignored) {}
 
-            TelaRegistroEntrada tela = new TelaRegistroEntrada(g);
+            TelaInicial tela = new TelaInicial(g);
             tela.setVisible(true);
         });
     }
