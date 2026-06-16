@@ -44,16 +44,21 @@ public class GerenciadorArquivo {
     private static final String ARQUIVO_PADRAO = "parksys.ser";
 
     public static void serializar(GerenciadorEstacionamento dados, String path) throws IOException {
+        boolean sucesso = false;
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(path))) {
             oos.writeObject(dados);
             System.out.println("Dados salvos com sucesso em: " + path);
+            sucesso = true;
         } catch (IOException e) {
             System.err.println("Erro ao salvar os dados: " + e.getMessage());
             throw e;
+        } finally {
+            System.out.println("Resultado da serialização: " + (sucesso ? "sucesso" : "falha"));
         }
     }
 
     public void exportarRelatorioTxt(List<Registro> registros, String path) {
+        boolean sucesso = false;
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(path))) {
             // 1️⃣ CABEÇALHO
             writer.write("===== RELATÓRIO DE ESTACIONAMENTO =====");
@@ -89,17 +94,20 @@ public class GerenciadorArquivo {
             writer.write("Receita total: R$ " + valueTotal);
             writer.newLine();
             writer.write("===== FIM DO RELATÓRIO =====");
+            sucesso = true;
         } catch (IOException e) {
             System.err.println("Erro ao exportar relatório: " + e.getMessage());
         } finally {
-            System.out.println("Exportação de relatório concluída");
+            System.out.println("Resultado da exportação do relatório: " + (sucesso ? "sucesso" : "falha"));
         }
     }
 
     public static GerenciadorEstacionamento desserializar(String path) {
+        boolean sucesso = false;
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(path))) {
             GerenciadorEstacionamento obj = (GerenciadorEstacionamento) ois.readObject();
             System.out.println("Dados carregados com sucesso de: " + path);
+            sucesso = true;
             return obj;
         } catch (FileNotFoundException e) {
             System.out.println("Arquivo não encontrado. Será criado um novo estacionamento.");
@@ -107,6 +115,8 @@ public class GerenciadorArquivo {
         } catch (IOException | ClassNotFoundException e) {
             System.err.println("Erro ao carregar os dados: " + e.getMessage());
             return null;
+        } finally {
+            System.out.println("Resultado da desserialização: " + (sucesso ? "sucesso" : "falha"));
         }
     }
 

@@ -220,9 +220,9 @@ public class TelaSaida extends JFrame {
             public void windowClosing(WindowEvent e) {
                 try {
                     GerenciadorArquivo.serializar(gerenciador);
-                    System.out.println("Dados salvos automaticamente ao fechar TelaSaida.");
+                    JOptionPane.showMessageDialog(TelaSaida.this, "Dados salvos automaticamente ao fechar TelaSaida.", "ParkSys", JOptionPane.INFORMATION_MESSAGE);
                 } catch (IOException ex) {
-                    System.err.println("Erro ao salvar dados: " + ex.getMessage());
+                    JOptionPane.showMessageDialog(TelaSaida.this, "Erro ao salvar dados: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });

@@ -136,9 +136,9 @@ public class TelaInicial extends JFrame {
                 }
                 try {
                     GerenciadorArquivo.serializar(gerenciador);
-                    System.out.println("Dados salvos automaticamente ao fechar TelaInicial.");
+                    JOptionPane.showMessageDialog(TelaInicial.this, "Dados salvos automaticamente ao fechar TelaInicial.", "ParkSys", JOptionPane.INFORMATION_MESSAGE);
                 } catch (IOException ex) {
-                    System.err.println("Erro ao salvar dados: " + ex.getMessage());
+                    JOptionPane.showMessageDialog(TelaInicial.this, "Erro ao salvar dados: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });

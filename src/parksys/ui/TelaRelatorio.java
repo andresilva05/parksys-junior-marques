@@ -143,9 +143,9 @@ public class TelaRelatorio extends JFrame {
             public void windowClosing(WindowEvent e) {
                 try {
                     GerenciadorArquivo.serializar(gerenciador);
-                    System.out.println("Dados salvos automaticamente ao fechar TelaRelatorio.");
+                    JOptionPane.showMessageDialog(TelaRelatorio.this, "Dados salvos automaticamente ao fechar TelaRelatorio.", "ParkSys", JOptionPane.INFORMATION_MESSAGE);
                 } catch (IOException ex) {
-                    System.err.println("Erro ao salvar dados: " + ex.getMessage());
+                    JOptionPane.showMessageDialog(TelaRelatorio.this, "Erro ao salvar dados: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });

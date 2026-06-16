@@ -317,9 +317,9 @@ public class TelaCadastroMensalista extends JFrame {
             public void windowClosing(WindowEvent e) {
                 try {
                     GerenciadorArquivo.serializar(gerenciador);
-                    System.out.println("Dados salvos automaticamente ao fechar TelaCadastroMensalista.");
+                    JOptionPane.showMessageDialog(TelaCadastroMensalista.this, "Dados salvos automaticamente ao fechar TelaCadastroMensalista.", "ParkSys", JOptionPane.INFORMATION_MESSAGE);
                 } catch (IOException ex) {
-                    System.err.println("Erro ao salvar dados: " + ex.getMessage());
+                    JOptionPane.showMessageDialog(TelaCadastroMensalista.this, "Erro ao salvar dados: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });

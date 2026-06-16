@@ -2,9 +2,11 @@ package parksys.entities;
 
 import parksys.enums.TipoVeiculo;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Mensalista extends Veiculo {
+public class Mensalista extends Veiculo implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String nome;
     private double mensalidade;
     private LocalDate validade;
