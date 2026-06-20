@@ -45,7 +45,13 @@ public class GerenciadorEstacionamento implements Serializable {
         }
     }
 
-    // M03: synchronized para evitar race condition
+    // M03: Adicionado synchronized em todos os métodos que leem ou alteram as coleções (vagas e registros).
+    // Explicação do risco de race condition sem synchronized:
+    // Sem o uso de synchronized, duas ou mais threads poderiam acessar e alterar o estado das coleções 
+    // (como o HashMap de vagas ou o ArrayList de registros) ao mesmo tempo. Isso pode causar inconsistências,
+    // como duas threads alocando a mesma vaga simultaneamente, ou sobrescrita silenciosa de registros 
+    // em estruturas que não são thread-safe nativamente. O synchronized garante que apenas uma thread
+    // por vez possa executar os métodos que alteram o estado compartilhado (locks intrínsecos do objeto).
     public synchronized boolean registrarEntrada(String placa, TipoVeiculo tipo, String idVagaPreferida) {
         Vaga vagaPref = vagas.get(idVagaPreferida);
 
